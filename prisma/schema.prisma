@@ -1,0 +1,210 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// =======================
+// ENUMS
+// =======================
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+}
+
+enum PaintingStatus {
+  AVAILABLE
+  RESERVED
+  SOLD
+  NOT_FOR_SALE
+}
+
+// =======================
+// MODELS
+// =======================
+
+model ADMIN{
+  id            String    @id @default(uuid())
+  name          String?
+  email         String    @unique
+  password      String    // Hashed password
+  role          Role      @default(ADMIN)
+  
+  // Soft Delete
+  deletedAt     DateTime?
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([email, deletedAt])
+}
+
+model Category {
+  id            String     @id @default(uuid())
+  name          String     @unique
+  slug          String     @unique
+  description   String?    @db.Text
+  
+  displayOrder  Int        @default(0)
+  
+  paintings     Painting[]
+  
+
+  // Audit & Soft Delete
+  deletedAt     DateTime?
+  
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([slug, deletedAt])
+  @@index([displayOrder])
+}
+
+model Painting {
+  id            String         @id @default(uuid())
+  title         String
+  slug          String         @unique
+  
+  description   String?        @db.Text
+  story         String?        @db.Text
+  
+  // Monetary values must be Decimal to avoid floating-point precision issues
+  price         Decimal?       @db.Decimal(10, 2)
+  originalPrice Decimal?       @db.Decimal(10, 2)
+  currency      String         @default("INR")
+  year          Int?
+  status        PaintingStatus @default(AVAILABLE)
+  
+  // Status flags and manual sorting
+  isPublished   Boolean        @default(false)
+  isFeatured    Boolean        @default(false)
+  displayOrder  Int            @default(0)
+  
+  // Art details
+  style         String?
+  medium        String?
+  materials     String?
+  
+  // PostgreSQL Arrays (Native fast arrays)
+  tags   String[] @default([])
+  colors String[] @default([])
+
+  // Dimensions
+  width         Decimal?       @db.Decimal(10, 2)
+  height        Decimal?       @db.Decimal(10, 2)
+  unit          String?        @default("inches")
+  isFramed      Boolean        @default(false)
+  
+  // SEO
+  seoTitle       String?
+  seoDescription String?
+  
+  // Relations
+  categoryId    String?
+  category      Category?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  images        PaintingImage[]
+  
+  // Audit & Soft Delete
+  deletedAt     DateTime?
+  
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  // Composite indexes optimized for common query patterns (always filtering by deletedAt)
+  @@index([slug, deletedAt])
+  @@index([categoryId, deletedAt])
+  @@index([status, deletedAt])
+  @@index([isPublished, isFeatured, deletedAt])
+  @@index([displayOrder])
+}
+
+model PaintingImage {
+  id          String    @id @default(uuid())
+  url         String
+  alt         String?
+  blurDataUrl String?
+  
+  // Image Metadata for frontend optimization (e.g., Next/Image layout shifts)
+  width       Int?
+  height      Int?
+  format      String?   // e.g., 'webp', 'jpeg'
+  sizeBytes   Int?
+  
+  isMain      Boolean   @default(false)
+  displayOrder Int      @default(0)
+  
+  paintingId  String
+  painting    Painting  @relation(fields: [paintingId], references: [id], onDelete: Cascade)
+  
+  // Audit & Soft Delete
+  deletedAt   DateTime?
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([paintingId, deletedAt])
+  @@index([displayOrder])
+}
+
+model Certificate {
+  id          String    @id @default(uuid())
+  title       String
+  description String?   @db.Text
+  imageUrl    String
+  issuedBy    String?
+  issueDate   DateTime?
+  
+  displayOrder Int      @default(0)
+  
+  // Audit & Soft Delete
+  deletedAt   DateTime?
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([deletedAt])
+  @@index([displayOrder])
+}
+
+model Testimonial {
+  id          String    @id @default(uuid())
+  clientName  String
+  text        String    @db.Text
+  rating      Int?      @default(5)
+  role        String?
+  isPublished Boolean   @default(true)
+  
+  displayOrder Int      @default(0)
+  
+  // Audit & Soft Delete
+  deletedAt   DateTime?
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([isPublished, deletedAt])
+  @@index([displayOrder])
+}
+
+model ContactMessage {
+  id        String    @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  message   String    @db.Text
+  isRead    Boolean   @default(false)
+  
+  // Soft Delete (Keep a trail of discarded messages)
+  deletedAt DateTime?
+  
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Index to quickly find unread messages that aren't deleted
+  @@index([isRead, deletedAt])
+  @@index([createdAt])
+}

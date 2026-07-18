@@ -5,3 +5,5 @@ dist
 .env*.local
 .DS_Store
 npm-debug.log*
+
+/app/generated/prisma
