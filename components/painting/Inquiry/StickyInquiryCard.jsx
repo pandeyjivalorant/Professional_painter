@@ -17,7 +17,7 @@ function formatPrice(price, currency = 'INR') {
 export default function StickyInquiryCard() {
   const artwork = useArtwork();
 
-  const isAvailable = artwork.status === 'Available';
+  const isAvailable = artwork.status === 'AVAILABLE';
 
   return (
     <motion.div

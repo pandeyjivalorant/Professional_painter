@@ -14,7 +14,7 @@ function formatPrice(price, currency = 'INR') {
 
 export default function MobileInquiryBar() {
   const artwork = useArtwork();
-  const isAvailable = artwork.status === 'Available';
+  const isAvailable = artwork.status === 'AVAILABLE';
 
   if (!isAvailable) return null;
 

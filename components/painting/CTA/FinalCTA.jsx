@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 export default function FinalCTA() {
   const artwork = useArtwork();
-  const isAvailable = artwork.status === 'Available';
+  const isAvailable = artwork.status === 'AVAILABLE';
 
   return (
     <SectionWrapper id="final-cta" className="py-32 md:py-48 bg-black text-center relative overflow-hidden">

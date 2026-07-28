@@ -13,11 +13,58 @@ export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '', interest: '' });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [formKey, setFormKey] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!form.name || !form.email || !form.interest || !form.subject || !form.message) {
+      return;
+    }
+
     setSubmitting(true);
-    setTimeout(() => { setSubmitted(true); setSubmitting(false); }, 1500);
+
+    const whatsappNumber = '919911330808';
+    
+    const message = `🎨 New Artwork Enquiry
+
+👤 Name:
+${form.name}
+
+📧 Email:
+${form.email}
+
+🎯 Enquiry Type:
+${form.interest}
+
+📝 Subject:
+${form.subject}
+
+💬 Message:
+${form.message}
+
+Thank you.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}&t=${Date.now()}`;
+
+    const link = document.createElement('a');
+    link.href = whatsappUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setSubmitting(false);
+    setSubmitted(true);
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
+    setSubmitting(false);
+    setForm({ name: '', email: '', subject: '', message: '', interest: '' });
+    setFormKey(prev => prev + 1);
   };
 
   const update = (k, v) => setForm(f => ({ ...f, [k]: v }));
@@ -48,13 +95,13 @@ export default function ContactPage() {
                 <CheckCircle size={48} className="text-gold mb-5" />
                 <h2 className="font-display text-3xl text-ivory mb-3">Message Received</h2>
                 <p className="text-muted max-w-sm">Vasu or the studio team will respond within 24–48 hours. Thank you for your interest.</p>
-                <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', subject: '', message: '', interest: '' }); }}
+                <button onClick={handleReset}
                   className="mt-8 text-gold text-xs tracking-widest uppercase border-b border-gold/30 pb-1 hover:border-gold transition-colors">
                   Send Another Message
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form key={formKey} onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   {[
                     { key: 'name', label: 'Full Name', type: 'text', placeholder: 'Your name' },
@@ -77,6 +124,7 @@ export default function ContactPage() {
                 <div>
                   <label className="block text-xs tracking-[0.2em] uppercase text-gold/60 mb-2">I Am Interested In</label>
                   <select
+                    required
                     value={form.interest}
                     onChange={e => update('interest', e.target.value)}
                     className="w-full bg-slate/40 border border-gold/20 px-4 py-3 text-sm text-ivory"
@@ -95,6 +143,7 @@ export default function ContactPage() {
                   <label className="block text-xs tracking-[0.2em] uppercase text-gold/60 mb-2">Subject</label>
                   <input
                     type="text"
+                    required
                     placeholder="What's on your mind?"
                     value={form.subject}
                     onChange={e => update('subject', e.target.value)}

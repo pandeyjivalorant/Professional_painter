@@ -2,28 +2,11 @@
 
 import { useArtwork } from '../ArtworkContext';
 import SectionWrapper from '../Shared/SectionWrapper';
-import { PAINTINGS } from '@/data/paintings';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-function getRecommendations(current, allPaintings, count = 4) {
-  const others = allPaintings.filter(p => p.id !== current.id);
-  // ... existing scoring logic ...
-  const scored = others.map(p => {
-    let score = 0;
-    if (p.artist?.name === current.artist?.name) score += 100;
-    if (current.collection && p.collection === current.collection) score += 80;
-    if (p.style === current.style) score += 60;
-    const sharedColors = p.colors?.filter(c => current.colors?.includes(c)) || [];
-    score += sharedColors.length * 30;
-    if (p.category === current.category) score += 10;
-    return { ...p, _score: score };
-  });
 
-  scored.sort((a, b) => b._score - a._score);
-  return scored.slice(0, count);
-}
 
 function formatPrice(price, currency = 'INR') {
   return new Intl.NumberFormat('en-IN', {
@@ -34,10 +17,7 @@ function formatPrice(price, currency = 'INR') {
   }).format(price);
 }
 
-export default function SimilarArtworks() {
-  const artwork = useArtwork();
-  const recommendations = getRecommendations(artwork, PAINTINGS);
-
+export default function SimilarArtworks({ recommendations = [] }) {
   if (recommendations.length === 0) return null;
 
   return (

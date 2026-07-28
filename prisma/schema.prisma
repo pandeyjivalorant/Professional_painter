@@ -11,8 +11,8 @@ datasource db {
 // =======================
 
 enum Role {
-  SUPER_ADMIN
-  ADMIN
+  SUPER_Admin
+  Admin
   EDITOR
 }
 
@@ -27,12 +27,12 @@ enum PaintingStatus {
 // MODELS
 // =======================
 
-model ADMIN{
+model Admin {
   id            String    @id @default(uuid())
   name          String?
   email         String    @unique
   password      String    // Hashed password
-  role          Role      @default(ADMIN)
+  role          Role      @default(Admin)
   
   // Soft Delete
   deletedAt     DateTime?

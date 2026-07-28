@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1, h2, h3, h4, h5, h6, .painting-title {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  
+  nav, button, label, .badge {
+    font-family: 'Cinzel', serif;
+  }
+  
+  body, p, .description, .paragraph {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
 :root {
   --obsidian: #0A0A0F;
   --ivory: #F5F0E8;

@@ -8,7 +8,7 @@ export function StarRating({ rating, size = 14, reviews }) {
   return (
     <div className="flex items-center gap-1.5">
       <div className="flex">
-        {[1,2,3,4,5].map(i => (
+        {[1, 2, 3, 4, 5].map(i => (
           <Star key={i} size={size} className={i <= Math.round(rating) ? 'text-gold fill-gold' : 'text-slate-mid'} />
         ))}
       </div>
@@ -36,13 +36,13 @@ export function PaintingCard({ painting, onPreview, index = 0 }) {
         />
 
         {/* Overlays */}
-        {!painting.available && (
+        {painting.status !== "AVAILABLE" && (
           <div className="absolute inset-0 bg-obsidian/60 flex items-center justify-center pointer-events-none">
             <span className="font-title text-xs tracking-[0.3em] text-ivory/60 border border-ivory/30 px-3 py-1">SOLD</span>
           </div>
         )}
 
-        {painting.originalPrice && painting.available && (
+        {painting.originalPrice && painting.status === "AVAILABLE" && (
           <div className="absolute top-3 left-3 bg-rose/90 text-obsidian text-[10px] font-semibold tracking-wider px-2 py-1 pointer-events-none">
             SALE
           </div>
@@ -88,7 +88,7 @@ export function PaintingCard({ painting, onPreview, index = 0 }) {
             </div>
           </div>
 
-          {painting.available && (
+          {painting.status === "AVAILABLE" && (
             <a
               href={`https://wa.me/919911330808?text=I am interested in acquiring the painting: ${encodeURIComponent(painting.title)}`}
               target="_blank"

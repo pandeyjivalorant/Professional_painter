@@ -24,7 +24,7 @@ export default function CertificateSection() {
           {/* Outer glow shadow */}
           <div className="absolute -inset-1 bg-gold/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
           
-          <div className="relative bg-[#0d0d0d] p-10 md:p-16 border-2 border-gold/40 shadow-[0_30px_100px_rgba(0,0,0,0.9)] overflow-hidden">
+          <div className="relative bg-[#0d0d0d] p-6 md:p-16 border-2 border-gold/40 shadow-[0_30px_100px_rgba(0,0,0,0.9)] overflow-hidden">
             {/* Paper texture overlay */}
             <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none bg-[url('https://images.unsplash.com/photo-1618641986557-1de223cb2f4f?q=80&w=1000&auto=format&fit=crop')]" />
             
@@ -62,7 +62,7 @@ export default function CertificateSection() {
             </div>
 
             {/* Specifications Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-16 py-8 border-y border-gold/20 relative z-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center mb-16 py-8 border-y border-gold/20 relative z-10">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-warm-white/40 mb-2">Medium</p>
                 <p className="text-ivory/90 text-sm font-sans">{artwork.medium}</p>
@@ -88,12 +88,12 @@ export default function CertificateSection() {
             </div>
 
             {/* Signature & Stamp */}
-            <div className="flex items-end justify-between px-8 relative z-10">
+            <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between gap-8 px-0 sm:px-8 relative z-10">
               <div>
                 <p className="font-display text-3xl text-gold/60 italic mb-2">
                   {artwork.artist?.name}
                 </p>
-                <div className="w-48 h-px bg-gold/30 mb-2" />
+                <div className="w-32 sm:w-48 h-px bg-gold/30 mb-2" />
                 <p className="text-[10px] text-warm-white/40 uppercase tracking-widest">Artist Signature</p>
               </div>
               <div className="text-center">

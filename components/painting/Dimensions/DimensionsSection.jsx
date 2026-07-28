@@ -72,7 +72,7 @@ export default function DimensionsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="grid grid-cols-2 gap-8"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8"
               >
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.25em] text-warm-white/40 mb-2">Framed</p>

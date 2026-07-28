@@ -156,7 +156,7 @@ export default function Footer() {
           <p className="text-muted text-xs tracking-wide">
             © 2026 Vasu Art Work. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             {['Privacy Policy', 'Terms of Sale', 'Cookie Policy'].map(item => (
               <a key={item} href="#" className="text-muted text-xs hover:text-gold transition-colors tracking-wide">{item}</a>
             ))}
