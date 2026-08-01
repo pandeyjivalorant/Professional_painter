@@ -15,7 +15,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = { pathname: usePathname() };
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -23,7 +23,25 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => setMenuOpen(false), [location]);
+  useEffect(() => setMenuOpen(false), [pathname]);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+      const handleEsc = (e) => {
+        if (e.key === 'Escape') {
+          setMenuOpen(false);
+        }
+      };
+      window.addEventListener('keydown', handleEsc);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleEsc);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [menuOpen]);
 
   return (
     <>
@@ -55,7 +73,7 @@ export default function Navbar() {
                 className="relative text-sm tracking-[0.12em] uppercase font-light text-ivory/80 hover:text-ivory transition-colors group"
               >
                 {link.label}
-                <span className={`absolute -bottom-1 left-0 h-px bg-gold transition-all duration-300 ${location.pathname === link.to ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                <span className={`absolute -bottom-1 left-0 h-px bg-gold transition-all duration-300 ${pathname === link.to ? 'w-full' : 'w-0 group-hover:w-full'}`} />
               </Link>
             ))}
           </div>
@@ -82,6 +100,7 @@ export default function Navbar() {
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'tween', duration: 0.35 }}
             className="fixed inset-0 z-40 bg-obsidian pt-20"
+            onClick={() => setMenuOpen(false)}
           >
             <div className="flex flex-col items-center justify-center h-full gap-10">
               {NAV_LINKS.map((link, i) => (
