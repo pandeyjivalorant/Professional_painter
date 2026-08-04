@@ -24,7 +24,7 @@ export default function Error({ error, reset }) {
         </button>
         <Link 
           href="/gallery"
-          className="px-6 py-3 bg-white/5 text-ivory hover:bg-white/10 transition-colors uppercase tracking-widest text-xs"
+          className="px-6 py-3 bg-ivory/5 text-ivory hover:bg-ivory/10 transition-colors uppercase tracking-widest text-xs"
         >
           Return to Gallery
         </Link>

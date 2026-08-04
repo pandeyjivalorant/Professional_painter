@@ -23,7 +23,7 @@ export default function MobileInquiryBar() {
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="md:hidden fixed bottom-0 left-0 w-full bg-black/90 backdrop-blur-xl border-t border-white/10 z-50 px-4 py-3 safe-area-pb"
+      className="md:hidden fixed bottom-0 left-0 w-full bg-obsidian/90 backdrop-blur-xl border-t border-ivory/10 z-50 px-4 py-3 safe-area-pb"
     >
       <div className="flex items-center gap-3">
         {/* Price */}

@@ -12,7 +12,7 @@ export default function FinalCTA() {
   return (
     <SectionWrapper id="final-cta" className="py-32 md:py-48 bg-black text-center relative overflow-hidden">
       {/* Cinematic Dark Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-black to-[#050505] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0B0B0B] via-black to-[#050505] pointer-events-none" />
       
       {/* Subtle animated particles/noise could go here. For now, a subtle radial gradient. */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-gold/5 blur-[100px] rounded-full pointer-events-none" />
@@ -27,10 +27,10 @@ export default function FinalCTA() {
           <p className="text-gold uppercase tracking-[0.3em] text-xs mb-8 font-sans">
             The Final Step
           </p>
-          <h2 className="font-display text-5xl md:text-7xl text-ivory mb-8 leading-tight">
+          <h2 className="font-display text-5xl md:text-7xl text-white mb-8 leading-tight">
             Ready to Make <br className="hidden md:block"/> It Yours?
           </h2>
-          <p className="text-warm-white/50 text-lg md:text-2xl font-sans mb-16 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white/50 text-lg md:text-2xl font-sans mb-16 max-w-2xl mx-auto leading-relaxed">
             {isAvailable 
               ? "Acquire this original masterpiece and elevate your collection with a piece of timeless beauty."
               : "This piece is no longer available, but you can explore more works by the artist or commission a custom piece."}
@@ -49,7 +49,7 @@ export default function FinalCTA() {
               href={`https://wa.me/919911330808?text=I am interested in acquiring the masterpiece: ${encodeURIComponent(artwork.title)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative w-full sm:w-auto px-12 py-6 bg-gold text-obsidian font-sans text-sm uppercase tracking-[0.25em] transition-all duration-300 overflow-hidden text-center block"
+              className="group relative w-full sm:w-auto px-12 py-6 bg-gold text-black font-sans text-sm uppercase tracking-[0.25em] transition-all duration-300 overflow-hidden text-center block"
             >
               <span className="relative z-10 font-medium">Inquire on WhatsApp</span>
               <div className="absolute inset-0 bg-white/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out" />
@@ -57,7 +57,7 @@ export default function FinalCTA() {
           )}
           <Link 
             href="/gallery"
-            className="group w-full sm:w-auto px-12 py-6 border border-white/20 text-ivory font-sans text-sm uppercase tracking-[0.25em] hover:border-gold/60 hover:text-gold transition-colors duration-300"
+            className="group w-full sm:w-auto px-12 py-6 border border-white/30 text-white font-sans text-sm uppercase tracking-[0.25em] hover:border-gold/60 hover:text-gold transition-colors duration-300"
           >
             Explore the Gallery
           </Link>

@@ -44,7 +44,7 @@ export default function CollectorExperience() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -8 }}
-              className="group relative p-10 md:p-14 border border-white/5 bg-white/[0.01] hover:bg-white/[0.02] transition-all duration-500 overflow-hidden"
+              className="group relative p-10 md:p-14 border border-ivory/10 bg-ivory/[0.03] hover:bg-ivory/[0.05] transition-all duration-500 overflow-hidden"
             >
               {/* Subtle radial glow on hover */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-gold opacity-0 group-hover:opacity-[0.15] blur-[50px] transition-opacity duration-700 pointer-events-none" />

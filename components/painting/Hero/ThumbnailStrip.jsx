@@ -23,7 +23,7 @@ export function ThumbnailStrip({ images, activeIndex, onSelect }) {
           {/* Animated Gold Border */}
           <div className={cn(
             "absolute inset-0 border transition-colors duration-500 z-10 pointer-events-none",
-            activeIndex === idx ? "border-gold/80" : "border-white/10"
+            activeIndex === idx ? "border-gold/80" : "border-ivory/10"
           )} />
           
           <Image

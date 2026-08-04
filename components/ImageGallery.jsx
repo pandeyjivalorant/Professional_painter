@@ -56,7 +56,7 @@ function Lightbox({ images, currentIndex, onClose, onNavigate }) {
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-5 right-5 z-10 w-11 h-11 flex items-center justify-center bg-obsidian/80 border border-gold/30 text-ivory/70 hover:text-gold hover:border-gold/60 transition-all"
+        className="absolute top-5 right-5 z-10 w-11 h-11 flex items-center justify-center bg-black/80 border border-gold/30 text-white/70 hover:text-gold hover:border-gold/60 transition-all"
       >
         <X size={18} />
       </button>
@@ -70,7 +70,7 @@ function Lightbox({ images, currentIndex, onClose, onNavigate }) {
       {currentIndex > 0 && (
         <button
           onClick={(e) => { e.stopPropagation(); onNavigate(currentIndex - 1); }}
-          className="absolute left-4 md:left-8 z-10 w-12 h-12 flex items-center justify-center bg-obsidian/60 border border-gold/20 text-ivory/60 hover:text-gold hover:border-gold/50 transition-all"
+          className="absolute left-4 md:left-8 z-10 w-12 h-12 flex items-center justify-center bg-black/60 border border-gold/20 text-white/60 hover:text-gold hover:border-gold/50 transition-all"
         >
           <ChevronLeft size={22} />
         </button>
@@ -80,7 +80,7 @@ function Lightbox({ images, currentIndex, onClose, onNavigate }) {
       {currentIndex < images.length - 1 && (
         <button
           onClick={(e) => { e.stopPropagation(); onNavigate(currentIndex + 1); }}
-          className="absolute right-4 md:right-8 z-10 w-12 h-12 flex items-center justify-center bg-obsidian/60 border border-gold/20 text-ivory/60 hover:text-gold hover:border-gold/50 transition-all"
+          className="absolute right-4 md:right-8 z-10 w-12 h-12 flex items-center justify-center bg-black/60 border border-gold/20 text-white/60 hover:text-gold hover:border-gold/50 transition-all"
         >
           <ChevronRight size={22} />
         </button>
@@ -102,8 +102,8 @@ function Lightbox({ images, currentIndex, onClose, onNavigate }) {
           className="max-w-full max-h-[80vh] object-contain shadow-2xl"
         />
         {/* Caption */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-obsidian/90 via-obsidian/50 to-transparent p-5 pt-12">
-          <p className="font-display text-xl italic text-ivory">{current.name}</p>
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5 pt-12">
+          <p className="font-display text-xl italic text-white">{current.name}</p>
         </div>
       </motion.div>
     </motion.div>

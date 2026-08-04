@@ -30,7 +30,7 @@ export default function DimensionsSection() {
   const paintY = wallY + 80;
 
   return (
-    <SectionWrapper id="dimensions" className="py-24 border-t border-white/5 bg-obsidian">
+    <SectionWrapper id="dimensions" className="py-24 border-t border-ivory/10 bg-obsidian">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <p className="text-gold uppercase tracking-[0.25em] text-[10px] mb-4 font-sans">
@@ -50,7 +50,7 @@ export default function DimensionsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="pb-8 border-b border-white/10"
+                className="pb-8 border-b border-ivory/10"
               >
                 <p className="text-[10px] uppercase tracking-[0.25em] text-warm-white/40 mb-2">Width</p>
                 <p className="text-ivory font-display text-5xl">{dims.width}<span className="text-xl text-warm-white/40 ml-2">{dims.unit}</span></p>
@@ -61,7 +61,7 @@ export default function DimensionsSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.1 }}
-                className="pb-8 border-b border-white/10"
+                className="pb-8 border-b border-ivory/10"
               >
                 <p className="text-[10px] uppercase tracking-[0.25em] text-warm-white/40 mb-2">Height</p>
                 <p className="text-ivory font-display text-5xl">{dims.height}<span className="text-xl text-warm-white/40 ml-2">{dims.unit}</span></p>
@@ -95,7 +95,7 @@ export default function DimensionsSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full max-w-2xl bg-[#0a0a0a] p-8 border border-white/10 shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]"
+              className="w-full max-w-2xl bg-slate p-8 border border-ivory/20 shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]"
               style={{ backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0)', backgroundSize: '40px 40px' }}
             >
               <svg

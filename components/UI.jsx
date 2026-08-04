@@ -81,9 +81,9 @@ export function PaintingCard({ painting, onPreview, index = 0 }) {
         <div className="mt-auto pt-4">
           <div className="flex items-center justify-between mt-3">
             <div>
-              <span className="font-display text-xl text-gold">${painting.price.toLocaleString()}</span>
+              <span className="font-display text-xl text-gold">₹{painting.price.toLocaleString('en-IN')}</span>
               {painting.originalPrice && (
-                <span className="text-muted text-xs line-through ml-2">${painting.originalPrice.toLocaleString()}</span>
+                <span className="text-muted text-xs line-through ml-2">₹{painting.originalPrice.toLocaleString('en-IN')}</span>
               )}
             </div>
           </div>
@@ -140,11 +140,11 @@ export function ImageModal({ painting, onClose }) {
           onClick={e => e.stopPropagation()}
         >
           <img src={painting.image} alt={painting.title} className="w-full h-auto max-h-[80vh] object-contain" />
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-obsidian/90 to-transparent p-6">
-            <p className="font-display text-2xl text-ivory italic">{painting.title}</p>
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+            <p className="font-display text-2xl text-white italic">{painting.title}</p>
             <p className="text-gold text-sm mt-1">{painting.category} · {painting.size}</p>
           </div>
-          <button onClick={onClose} className="absolute top-4 right-4 w-10 h-10 bg-obsidian/80 border border-gold/30 flex items-center justify-center text-ivory hover:text-gold">
+          <button onClick={onClose} className="absolute top-4 right-4 w-10 h-10 bg-black/80 border border-gold/30 flex items-center justify-center text-white hover:text-gold">
             ✕
           </button>
         </motion.div>

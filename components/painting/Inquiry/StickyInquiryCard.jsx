@@ -24,10 +24,10 @@ export default function StickyInquiryCard() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className="relative rounded-none border border-gold/20 bg-black/80 backdrop-blur-2xl p-10 xl:p-12 shadow-[0_20px_80px_rgba(0,0,0,0.8)]"
+      className="relative rounded-none border border-gold/20 bg-slate/90 backdrop-blur-2xl p-10 xl:p-12 shadow-[0_20px_80px_rgba(0,0,0,0.8)]"
     >
       {/* Subtle Inner Glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ivory/[0.05] to-transparent pointer-events-none" />
 
       {/* Header Info */}
       <div className="mb-8">
@@ -78,7 +78,7 @@ export default function StickyInquiryCard() {
           >
             <span className="relative z-10 font-medium">Inquire on WhatsApp</span>
             {/* Hover shine effect */}
-            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out" />
+            <div className="absolute inset-0 bg-ivory/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out" />
           </a>
         </div>
       )}

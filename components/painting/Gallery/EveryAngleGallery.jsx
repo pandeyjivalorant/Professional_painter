@@ -28,7 +28,7 @@ export default function EveryAngleGallery() {
 
       <div className="flex flex-col gap-6 max-w-6xl mx-auto">
         {/* Main Large Preview */}
-        <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden border border-white/5 bg-black">
+        <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden border border-ivory/10 bg-slate">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -68,7 +68,7 @@ export default function EveryAngleGallery() {
                 "relative w-32 md:w-48 aspect-video flex-shrink-0 border transition-all duration-500 overflow-hidden",
                 activeIndex === idx 
                   ? "border-gold shadow-[0_0_20px_rgba(201,162,39,0.2)] opacity-100" 
-                  : "border-white/10 opacity-40 hover:opacity-100 hover:border-gold/50"
+                  : "border-ivory/10 opacity-40 hover:opacity-100 hover:border-gold/50"
               )}
             >
               <Image

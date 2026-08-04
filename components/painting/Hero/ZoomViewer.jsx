@@ -40,7 +40,7 @@ export function ZoomViewer({ image, onOpenLightbox }) {
               onOpenLightbox?.();
             }}
             aria-label="Open fullscreen viewer"
-            className="absolute bottom-6 right-6 z-50 w-14 h-14 flex items-center justify-center rounded-full bg-black/60 backdrop-blur-xl border border-white/15 text-gold hover:bg-gold hover:text-obsidian hover:border-gold transition-colors duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:shadow-[0_4px_30px_rgba(201,162,39,0.35)] cursor-pointer group"
+            className="absolute bottom-6 right-6 z-50 w-14 h-14 flex items-center justify-center rounded-full bg-black/60 backdrop-blur-xl border border-white/15 text-gold hover:bg-gold hover:text-black hover:border-gold transition-colors duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:shadow-[0_4px_30px_rgba(201,162,39,0.35)] cursor-pointer group"
           >
             <Maximize2 className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
           </motion.button>

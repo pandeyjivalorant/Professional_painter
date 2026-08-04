@@ -175,7 +175,7 @@ export default function GalleryClient({ initialPaintings }) {
                 {/* Price range */}
                 <div>
                   <label className="block text-xs tracking-[0.2em] uppercase text-gold/60 mb-3">
-                    Price Range: <span className="text-gold">₹{priceRange[0].toLocaleString()} — ₹{priceRange[1].toLocaleString()}</span>
+                    Price Range: <span className="text-gold">₹{priceRange[0].toLocaleString('en-IN')} — ₹{priceRange[1].toLocaleString('en-IN')}</span>
                   </label>
                   <div className="space-y-3">
                     <input type="range" min="0" max="100000" step="1000" value={priceRange[1]}

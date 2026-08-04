@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import dynamicNext from 'next/dynamic';
 import prisma from '@/lib/prisma';
 import { ArtworkProvider } from '@/components/painting/ArtworkContext';
+import { serializePainting } from '@/lib/serializers';
 
 export const dynamic = 'force-dynamic';
 
@@ -75,19 +76,16 @@ export default async function PaintingPage({ params }) {
   }
 
   // Format painting object for the existing UI components
+  const serializedPaintingData = serializePainting(paintingData);
   const painting = {
-    ...paintingData,
-    price: paintingData.price ? Number(paintingData.price) : null,
-    originalPrice: paintingData.originalPrice ? Number(paintingData.originalPrice) : null,
-    width: paintingData.width ? Number(paintingData.width) : null,
-    height: paintingData.height ? Number(paintingData.height) : null,
+    ...serializedPaintingData,
     image: paintingData.images?.find(img => img.isMain)?.url || paintingData.images?.[0]?.url,
     mainImage: paintingData.images?.find(img => img.isMain)?.url || paintingData.images?.[0]?.url,
     galleryImages: paintingData.images?.map(img => ({ url: img.url, alt: img.alt || paintingData.title })) || [],
     artist: { name: 'Vasu Pande' },
     dimensions: {
-       width: paintingData.width ? Number(paintingData.width) : null,
-       height: paintingData.height ? Number(paintingData.height) : null,
+       width: serializedPaintingData.width,
+       height: serializedPaintingData.height,
        unit: paintingData.unit,
        framed: paintingData.isFramed
     },
@@ -105,8 +103,7 @@ export default async function PaintingPage({ params }) {
   });
 
   const recommendations = relatedPaintingsData.map(rp => ({
-    ...rp,
-    price: rp.price ? Number(rp.price) : null,
+    ...serializePainting(rp),
     image: rp.images?.find(img => img.isMain)?.url || rp.images?.[0]?.url,
     artist: { name: 'Vasu Pande' },
     category: rp.categoryId ? painting.category : null // Simplification

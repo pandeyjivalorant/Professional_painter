@@ -94,7 +94,7 @@ export default function StorySection() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             // Image: Dominant size, sticky positioning for elegance on scroll
-            className="sticky top-24 aspect-[4/5] w-full overflow-hidden border border-white/5 shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+            className="sticky top-24 aspect-[4/5] w-full overflow-hidden border border-ivory/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
           >
             {/* Dark gradient overlay for luxury feel */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent z-10 pointer-events-none" />

@@ -6,10 +6,12 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Palette } from 'lucide-react';
 
+import ThemeToggle from './ThemeToggle';
+
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'Gallery', to: '/gallery' },
-  { label: 'Certifications', to: '/certifications' },
+  { label: 'Certificates', to: '/certificates' },
 ];
 
 export default function Navbar() {
@@ -50,7 +52,7 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'nav-scrolled' : ''}`}
-        style={{ background: scrolled ? '' : 'linear-gradient(180deg, rgba(10,10,15,0.9) 0%, transparent 100%)' }}
+        style={{ background: scrolled ? '' : 'linear-gradient(180deg, rgba(11,11,11, 0.9) 0%, transparent 100%)' }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
           {/* Logo */}
@@ -59,7 +61,7 @@ export default function Navbar() {
               <Palette size={16} className="text-gold" />
             </div>
             <div>
-              <div className="font-title text-sm tracking-[0.2em] text-ivory leading-none">VASU ART WORK</div>
+              <div className="font-title text-sm tracking-[0.2em] text-white leading-none">VASU ART WORK</div>
               <div className="text-[10px] tracking-[0.3em] text-gold/70 uppercase leading-none mt-0.5">Fine Art Studio</div>
             </div>
           </Link>
@@ -70,7 +72,7 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 href={link.to}
-                className="relative text-sm tracking-[0.12em] uppercase font-light text-ivory/80 hover:text-ivory transition-colors group"
+                className={`relative text-sm tracking-[0.12em] uppercase font-light transition-colors group ${scrolled ? 'text-ivory/80 hover:text-ivory' : 'text-white/80 hover:text-white'}`}
               >
                 {link.label}
                 <span className={`absolute -bottom-1 left-0 h-px bg-gold transition-all duration-300 ${pathname === link.to ? 'w-full' : 'w-0 group-hover:w-full'}`} />
@@ -80,11 +82,12 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <Link href="/contact" className="hidden md:inline-flex items-center gap-2 px-5 py-2 border border-gold/40 text-gold text-xs tracking-[0.15em] uppercase hover:bg-gold/10 transition-colors">
               Contact Me
             </Link>
 
-            <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-ivory/70 hover:text-ivory">
+            <button onClick={() => setMenuOpen(!menuOpen)} className={`md:hidden p-2 ${scrolled ? 'text-ivory/70 hover:text-ivory' : 'text-white/70 hover:text-white'}`}>
               {menuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>

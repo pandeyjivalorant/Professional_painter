@@ -44,7 +44,7 @@ export default function RoomPreviewSection() {
 
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* Animated Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10 p-2 border border-white/10 bg-black/40 rounded-full backdrop-blur-md">
+        <div className="flex flex-wrap justify-center gap-2 mb-10 p-2 border border-ivory/20 bg-slate/40 rounded-full backdrop-blur-md">
           {availableRooms.map(([key]) => {
             const isActive = selectedRoom === key;
             return (
@@ -69,7 +69,7 @@ export default function RoomPreviewSection() {
         </div>
 
         {/* Room Image */}
-        <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+        <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden border border-ivory/20 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedRoom}

@@ -50,7 +50,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center">
                 <Palette size={16} className="text-gold" />
@@ -82,27 +82,8 @@ export default function Footer() {
                 ['Home', '/'],
                 ['Gallery & Shop', '/gallery'],
                 ['Painting Details', '/gallery'],
-                ['Certifications', '/certifications'],
+                ['Certificates', '/certificates'],
                 ['Contact Studio', '/contact'],
-              ].map(([label, to]) => (
-                <li key={label}>
-                  <Link href={to} className="text-muted text-sm hover:text-gold transition-colors flex items-center gap-2 group">
-                    <span className="w-3 h-px bg-gold/30 group-hover:w-5 transition-all" />
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Customer Service */}
-          <div>
-            <h3 className="font-title text-xs tracking-[0.25em] text-gold/80 mb-5 uppercase">Customer Care</h3>
-            <ul className="space-y-3">
-              {[
-                ['Shipping Policy', '/'],
-                ['Authentication', '/certifications'],
-                ['Commission a Work', '/contact'],
               ].map(([label, to]) => (
                 <li key={label}>
                   <Link href={to} className="text-muted text-sm hover:text-gold transition-colors flex items-center gap-2 group">

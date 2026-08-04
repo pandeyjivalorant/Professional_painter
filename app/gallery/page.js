@@ -1,6 +1,8 @@
 import prisma from '@/lib/prisma';
 import GalleryClient from '@/components/gallery/GalleryClient';
 
+import { serializePainting } from '@/lib/serializers';
+
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
@@ -20,9 +22,7 @@ export default async function GalleryPage() {
 
   // Format data for the client component
   const initialPaintings = paintingsData.map(p => ({
-    ...p,
-    price: p.price ? Number(p.price) : null,
-    originalPrice: p.originalPrice ? Number(p.originalPrice) : null,
+    ...serializePainting(p),
     thumbnail: p.images?.find(img => img.isMain)?.url || p.images?.[0]?.url,
     artist: { name: 'Vasu Pande' },
     category: p.category?.name || 'Uncategorized',

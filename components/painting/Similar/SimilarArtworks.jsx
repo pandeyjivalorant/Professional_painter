@@ -21,7 +21,7 @@ export default function SimilarArtworks({ recommendations = [] }) {
   if (recommendations.length === 0) return null;
 
   return (
-    <SectionWrapper className="py-24 md:py-32 bg-[#0a0a0a] border-t border-white/5">
+    <SectionWrapper className="py-24 md:py-32 bg-obsidian border-t border-ivory/10">
       <div className="max-w-[1600px] mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
@@ -34,7 +34,7 @@ export default function SimilarArtworks({ recommendations = [] }) {
           </div>
           <Link 
             href="/gallery"
-            className="text-warm-white/60 text-xs uppercase tracking-[0.2em] font-sans hover:text-gold transition-colors pb-1 border-b border-white/10 hover:border-gold"
+            className="text-warm-white/60 text-xs uppercase tracking-[0.2em] font-sans hover:text-gold transition-colors pb-1 border-b border-ivory/20 hover:border-gold"
           >
             View All Artworks
           </Link>
@@ -50,7 +50,7 @@ export default function SimilarArtworks({ recommendations = [] }) {
               transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link href={`/painting/${painting.id}`} className="group block h-full">
-                <div className="relative aspect-[3/4] overflow-hidden bg-black mb-6 border border-white/5">
+                <div className="relative aspect-[3/4] overflow-hidden bg-black mb-6 border border-ivory/10">
                   <Image
                     src={painting.mainImage || painting.image}
                     alt={painting.title}

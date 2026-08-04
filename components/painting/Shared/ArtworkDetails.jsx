@@ -14,7 +14,7 @@ function DetailCard({ icon: Icon, label, value, delay }) {
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -4, backgroundColor: 'rgba(255,255,255,0.03)' }}
-      className="group p-6 md:p-8 border border-white/5 bg-white/[0.01] transition-all duration-300"
+      className="group p-6 md:p-8 border border-ivory/10 bg-ivory/[0.03] transition-all duration-300"
     >
       <div className="flex flex-col h-full justify-between gap-6">
         <div className="flex items-center justify-between">

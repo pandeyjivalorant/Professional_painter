@@ -19,7 +19,7 @@ const localCertificates = CERT_FILES.map(filename => {
   return { src: path, name };
 });
 
-const CERTIFICATIONS = [
+const CERTIFICATES = [
   { id: 1, title: "Master of Fine Arts", org: "Accademia di Belle Arti, Florence", year: "2003", type: "cert", description: "With distinction. Specialization in oil painting and classical techniques under Maestro Corrado Rimini.", color: "#C9A84C" },
   { id: 2, title: "Postgraduate Diploma in Painting", org: "The Slade School of Fine Art, London", year: "2005", type: "cert", description: "Advanced studies in contemporary painting practice and critical theory. First Class with Honours.", color: "#D4A5A5" },
   { id: 3, title: "Certificate of Excellence", org: "Royal Academy of Arts, London", year: "2019", type: "cert", description: "Awarded for outstanding contribution to the Summer Exhibition, selected from 12,000 submissions.", color: "#C9A84C" },
@@ -62,14 +62,14 @@ const APPRECIATIONS = [
 
 const TABS = [
   { id: 'gallery', label: 'Gallery', icon: Image },
-  { id: 'certs', label: 'Certifications', icon: FileText },
+  { id: 'certs', label: 'Certificates', icon: FileText },
   { id: 'awards', label: 'Awards', icon: Trophy },
   { id: 'exhibitions', label: 'Exhibitions', icon: Globe },
   { id: 'media', label: 'Media', icon: Tv },
   { id: 'appreciation', label: 'Appreciation', icon: Heart },
 ];
 
-export default function CertificationsPage() {
+export default function CertificatesPage() {
   const [activeTab, setActiveTab] = useState('gallery');
   const [certModal, setCertModal] = useState(null);
 
@@ -81,7 +81,7 @@ export default function CertificationsPage() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <p className="font-title text-xs tracking-[0.4em] text-gold/70 uppercase mb-3">Credentials</p>
-            <h1 className="font-display text-5xl lg:text-6xl text-ivory mb-4">Certifications &<br /><em className="gold-text">Acknowledgments</em></h1>
+            <h1 className="font-display text-5xl lg:text-6xl text-ivory mb-4">Certificates &<br /><em className="gold-text">Acknowledgments</em></h1>
             <p className="text-muted max-w-lg">A career built on consistent excellence, international recognition, and a commitment to the highest standards of fine art practice.</p>
           </motion.div>
         </div>
@@ -117,10 +117,10 @@ export default function CertificationsPage() {
           </motion.div>
         )}
 
-        {/* Certifications */}
+        {/* Certificates */}
         {activeTab === 'certs' && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid md:grid-cols-3 gap-6">
-            {CERTIFICATIONS.map((cert, i) => (
+            {CERTIFICATES.map((cert, i) => (
               <motion.div
                 key={cert.id}
                 initial={{ opacity: 0, y: 30 }}

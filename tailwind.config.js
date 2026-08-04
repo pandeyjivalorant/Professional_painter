@@ -9,15 +9,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        obsidian: '#0B0B0B',
-        ivory: '#F5F0E8',
-        gold: '#C9A227',
-        'gold-light': '#E6D088',
-        rose: '#D4A5A5',
-        slate: '#2A2A3A',
-        'slate-mid': '#3D3D52',
-        muted: '#888888',
-        'warm-white': '#F8F5F0',
+        obsidian: 'rgb(var(--obsidian-rgb) / <alpha-value>)',
+        ivory: 'rgb(var(--ivory-rgb) / <alpha-value>)',
+        gold: 'rgb(var(--gold-rgb) / <alpha-value>)',
+        'gold-light': 'rgb(var(--gold-light-rgb) / <alpha-value>)',
+        rose: 'rgb(var(--rose-rgb) / <alpha-value>)',
+        slate: 'rgb(var(--slate-rgb) / <alpha-value>)',
+        'slate-mid': 'rgb(var(--slate-mid-rgb) / <alpha-value>)',
+        muted: 'rgb(var(--muted-rgb) / <alpha-value>)',
+        'warm-white': 'rgb(var(--warm-white-rgb) / <alpha-value>)',
       },
       fontFamily: {
         display: ['Cormorant Garamond', 'serif'],

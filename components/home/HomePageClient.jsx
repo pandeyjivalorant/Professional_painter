@@ -8,19 +8,19 @@ import { PaintingCard, SectionHeader, StarRating } from '@/components/UI';
 
 const TESTIMONIALS = [
   {
-    name: "Isabella Fontaine", title: "Private Collector, Paris",
-    text: "Vasu's work transcends mere decoration. Owning 'Golden Silence' has changed how I experience my home — it's a meditation I return to every morning.",
-    rating: 5, avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&q=80"
+    name: "Riya Agrawal", title: "Gurugram",
+    text: "The authenticity, the story behind each piece, and the way the colors seem to shift depending on the light… owning a Vasu Pande original feels less like collecting art and more like holding a fragment of someone’s soul.",
+    rating: 5, avatar: "https://img.magnific.com/free-photo/indian-woman-posing-cute-stylish-outfit-camera-smiling_482257-122351.jpg"
   },
   {
-    name: "Marcus Thorne", title: "Gallery Director, London",
-    text: "In twenty years of curation, I have rarely encountered an artist who commands such technical mastery while maintaining such emotional vulnerability. A true rarity.",
-    rating: 5, avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80"
+    name: "Rohit Nagar", title: "Bangalore",
+    text: "His brushstrokes are confident, yet the emotion behind them feels fragile. In an age of digital repetition, Vasu’s work is a necessary reminder of what handmade art can truly achieve.",
+    rating: 5, avatar: "https://images.unsplash.com/photo-1729157661483-ed21901ed892?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aW5kaWFuJTIwbWFufGVufDB8fDB8fHww"
   },
   {
-    name: "Yuki Tanaka", title: "Art Advisor, Tokyo",
-    text: "The authentication process, provenance documentation, and after-purchase support are exceptional. This is how luxury art collecting should work.",
-    rating: 5, avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80"
+    name: "Anamika Verma", title: "New Delhi",
+    text: "The way he captures light in his watercolors is breathtaking. It’s not just painting; it’s like he’s bottling sunshine and selling it. Absolutely stunning.",
+    rating: 5, avatar: "https://t3.ftcdn.net/jpg/01/87/83/26/360_F_187832626_Z0K54NuFDzPM10NZw6gWdRYMC763xJQM.jpg"
   },
 ];
 
@@ -47,8 +47,8 @@ export default function HomePageClient({ featuredPaintings }) {
             alt="Vasu Pande Studio"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-obsidian/90 via-obsidian/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 hero-overlay" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
         </motion.div>
 
         {/* Canvas texture */}
@@ -71,7 +71,7 @@ export default function HomePageClient({ featuredPaintings }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="font-display font-light leading-[1.1] mb-6 text-ivory"
+            className="font-display font-light leading-[1.1] mb-6 text-white"
             style={{ fontSize: 'clamp(3rem, 7vw, 6.5rem)' }}
           >
             Where Paint<br />
@@ -82,7 +82,7 @@ export default function HomePageClient({ featuredPaintings }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="text-ivory/60 text-lg max-w-md leading-relaxed mb-10 font-light"
+            className="text-white/70 text-lg max-w-md leading-relaxed mb-10 font-light"
           >
             Original oil paintings, watercolors, and mixed media works. Each piece arrives with a certificate of authenticity and a story worth telling.
           </motion.p>
@@ -98,9 +98,9 @@ export default function HomePageClient({ featuredPaintings }) {
               Explore Gallery
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link href="/contact"
-              className="inline-flex items-center gap-3 px-8 py-4 border border-ivory/30 text-ivory text-sm tracking-[0.15em] uppercase hover:border-gold hover:text-gold transition-all">
-              Commission a Work
+            <Link href="/certificates"
+              className="inline-flex items-center gap-3 px-8 py-4 border border-white/30 text-white text-sm tracking-[0.15em] uppercase hover:border-gold hover:text-gold transition-all">
+              Certificates
             </Link>
           </motion.div>
         </motion.div>
@@ -109,7 +109,7 @@ export default function HomePageClient({ featuredPaintings }) {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-ivory/30"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40"
         >
           <span className="text-[10px] tracking-[0.4em] uppercase">Scroll</span>
           <ChevronDown size={16} />
@@ -310,14 +310,14 @@ export default function HomePageClient({ featuredPaintings }) {
       <section className="py-32 relative overflow-hidden">
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1600&q=80" alt="" className="w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-obsidian/80" />
+          <div className="absolute inset-0 bg-black/80" />
         </div>
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <p className="font-title text-xs tracking-[0.5em] text-gold/70 uppercase mb-4">Begin Collecting</p>
-          <h2 className="font-display text-5xl lg:text-6xl text-ivory mb-6 leading-tight">
+          <h2 className="font-display text-5xl lg:text-6xl text-white mb-6 leading-tight">
             Find the Work<br />That <em className="gold-text">Speaks to You</em>
           </h2>
-          <p className="text-ivory/50 text-lg leading-relaxed mb-10">
+          <p className="text-white/60 text-lg leading-relaxed mb-10">
             Every original painting is a unique act of communication. The right one will ask you something.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
@@ -325,9 +325,9 @@ export default function HomePageClient({ featuredPaintings }) {
               className="px-10 py-4 bg-gold text-obsidian text-sm tracking-[0.2em] uppercase font-semibold hover:bg-gold-light transition-colors">
               Browse All Paintings
             </Link>
-            <Link href="/contact"
-              className="px-10 py-4 border border-ivory/30 text-ivory text-sm tracking-[0.15em] uppercase hover:border-gold hover:text-gold transition-all">
-              Commission a Portrait
+            <Link href="/certificates"
+              className="px-10 py-4 border border-white/30 text-white text-sm tracking-[0.15em] uppercase hover:border-gold hover:text-gold transition-all">
+              Certificates
             </Link>
           </div>
         </div>

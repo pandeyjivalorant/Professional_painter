@@ -8,7 +8,7 @@ export default function InspirationalQuote() {
   const quote = artwork.quote || "Art washes away from the soul the dust of everyday life.";
   
   return (
-    <SectionWrapper id="inspirational-quote" className="py-32 md:py-48 bg-obsidian border-y border-white/5 relative overflow-hidden">
+    <SectionWrapper id="inspirational-quote" className="py-32 md:py-48 bg-obsidian border-y border-ivory/10 relative overflow-hidden">
       {/* Subtle ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[300px] bg-gold/5 blur-[120px] pointer-events-none rounded-full" />
       

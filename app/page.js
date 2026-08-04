@@ -1,6 +1,8 @@
 import prisma from '@/lib/prisma';
 import HomePageClient from '@/components/home/HomePageClient';
 
+import { serializePainting } from '@/lib/serializers';
+
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
@@ -17,9 +19,7 @@ export default async function HomePage() {
   });
 
   const featuredPaintings = featuredPaintingsData.map(p => ({
-    ...p,
-    price: p.price ? Number(p.price) : null,
-    originalPrice: p.originalPrice ? Number(p.originalPrice) : null,
+    ...serializePainting(p),
     image: p.images?.find(img => img.isMain)?.url || p.images?.[0]?.url,
     thumbnail: p.images?.find(img => img.isMain)?.url || p.images?.[0]?.url,
     artist: { name: 'Vasu Pande' }

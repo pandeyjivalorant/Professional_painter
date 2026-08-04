@@ -77,7 +77,7 @@ Thank you.`;
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <p className="font-title text-xs tracking-[0.4em] text-gold/70 uppercase mb-3">Get in Touch</p>
             <h1 className="font-display text-5xl lg:text-6xl text-ivory mb-4">The Studio is<br /><em className="gold-text">Listening</em></h1>
-            <p className="text-muted max-w-lg">Inquiries about available works, commissions, exhibitions, and corporate collecting are all welcome.</p>
+            <p className="text-muted max-w-lg">Inquiries about available works, exhibitions, and corporate collecting are all welcome.</p>
           </motion.div>
         </div>
       </div>
@@ -131,7 +131,7 @@ Thank you.`;
                   >
                     <option value="">Select an enquiry type</option>
                     <option>Purchasing an available work</option>
-                    <option>Commissioning an original painting</option>
+
                     <option>Corporate art collection</option>
                     <option>Exhibition or gallery collaboration</option>
                     <option>Press or media enquiry</option>
@@ -228,7 +228,8 @@ Thank you.`;
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.7!2d11.2558136!3d43.7695604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a5403c6b95b55%3A0xb59d5e0af49b1e70!2sFlorence%2C%20Metropolitan%20City%20of%20Florence%2C%20Italy!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
                 width="100%"
                 height="240"
-                style={{ border: 0, filter: 'grayscale(100%) contrast(1.1) invert(1)' }}
+                className="map-filter"
+                style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
                 title="Studio Location"
