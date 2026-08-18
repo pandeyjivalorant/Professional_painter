@@ -14,109 +14,84 @@ export default async function MessagesAdminPage() {
   const unreadCount = messages.filter((m) => !m.isRead).length;
 
   return (
-    <div style={{ padding: '32px', maxWidth: '1280px', margin: '0 auto', fontFamily: 'Inter, system-ui, sans-serif' }}>
-      <div style={{ marginBottom: '32px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <h1 style={{ fontSize: '24px', fontWeight: 700, color: '#f1f5f9', margin: 0 }}>Contact Messages</h1>
+    <div className="p-4 md:p-8 max-w-7xl mx-auto w-full font-sans">
+      <div className="mb-6 md:mb-8">
+        <div className="flex items-center gap-3">
+          <h1 className="text-xl md:text-2xl font-bold text-slate-100 m-0">Contact Messages</h1>
           {unreadCount > 0 && (
-            <span
-              style={{
-                background: 'rgba(59,130,246,0.2)',
-                color: '#60a5fa',
-                fontSize: '12px',
-                fontWeight: 600,
-                padding: '2px 10px',
-                borderRadius: '99px',
-              }}
-            >
+            <span className="bg-blue-500/20 text-blue-400 text-xs font-semibold px-2.5 py-0.5 rounded-full whitespace-nowrap">
               {unreadCount} unread
             </span>
           )}
         </div>
-        <p style={{ color: '#64748b', marginTop: '4px', fontSize: '14px' }}>
+        <p className="text-slate-400 mt-1 text-sm md:text-base">
           Manage messages sent via the contact form.
         </p>
       </div>
 
-      <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '12px', overflow: 'hidden' }}>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+      <div className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-sm">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-sm text-left">
             <thead>
-              <tr style={{ background: '#0f172a', borderBottom: '1px solid #334155' }}>
+              <tr className="bg-slate-900 border-b border-slate-700">
                 {['Sender', 'Email', 'Message', 'Date', 'Status', 'Actions'].map((h, i) => (
                   <th
                     key={h}
-                    style={{
-                      padding: '12px 20px',
-                      color: '#64748b',
-                      fontWeight: 600,
-                      fontSize: '11px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      textAlign: i === 5 ? 'right' : 'left',
-                    }}
+                    className={`p-3 md:px-5 md:py-4 text-slate-400 font-semibold text-xs uppercase tracking-wider ${
+                      i === 5 ? 'text-right' : 'text-left'
+                    }`}
                   >
                     {h}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-slate-700/50">
               {messages.length === 0 ? (
                 <tr>
-                  <td colSpan={6} style={{ padding: '48px 20px', textAlign: 'center', color: '#64748b' }}>
+                  <td colSpan={6} className="p-8 md:p-12 text-center text-slate-400 text-sm md:text-base">
                     No messages yet.
                   </td>
                 </tr>
               ) : (
-                messages.map((msg, i) => (
+                messages.map((msg) => (
                   <tr
                     key={msg.id}
-                    style={{
-                      borderBottom: i < messages.length - 1 ? '1px solid #1e293b' : 'none',
-                      background: !msg.isRead ? 'rgba(59,130,246,0.05)' : 'transparent',
-                    }}
+                    className={`hover:bg-slate-700/20 transition-colors ${
+                      !msg.isRead ? 'bg-blue-500/5' : ''
+                    }`}
                   >
-                    <td style={{ padding: '14px 20px' }}>
-                      <p style={{ color: '#e2e8f0', fontWeight: msg.isRead ? 400 : 600, margin: 0, whiteSpace: 'nowrap' }}>
+                    <td className="p-3 md:px-5 md:py-4">
+                      <p className={`text-slate-200 m-0 whitespace-nowrap ${msg.isRead ? 'font-normal' : 'font-semibold'}`}>
                         {msg.name}
                       </p>
-                      {msg.phone && <p style={{ color: '#64748b', fontSize: '12px', margin: '2px 0 0 0' }}>{msg.phone}</p>}
+                      {msg.phone && <p className="text-slate-400 text-xs mt-0.5 mb-0">{msg.phone}</p>}
                     </td>
-                    <td style={{ padding: '14px 20px' }}>
-                      <a href={`mailto:${msg.email}`} style={{ color: '#60a5fa', textDecoration: 'none', fontSize: '13px' }}>
+                    <td className="p-3 md:px-5 md:py-4">
+                      <a href={`mailto:${msg.email}`} className="text-blue-400 hover:text-blue-300 no-underline text-xs md:text-sm transition-colors">
                         {msg.email}
                       </a>
                     </td>
-                    <td style={{ padding: '14px 20px', maxWidth: '240px' }}>
-                      <p
-                        style={{
-                          color: '#94a3b8',
-                          margin: 0,
-                          fontSize: '13px',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          whiteSpace: 'nowrap',
-                        }}
-                      >
+                    <td className="p-3 md:px-5 md:py-4 max-w-[200px] md:max-w-[240px]">
+                      <p className="text-slate-400 m-0 text-xs md:text-sm truncate">
                         {msg.message}
                       </p>
                     </td>
-                    <td style={{ padding: '14px 20px', color: '#64748b', whiteSpace: 'nowrap', fontSize: '13px' }}>
+                    <td className="p-3 md:px-5 md:py-4 text-slate-400 whitespace-nowrap text-xs md:text-sm">
                       {new Date(msg.createdAt).toLocaleDateString()}
                     </td>
-                    <td style={{ padding: '14px 20px' }}>
+                    <td className="p-3 md:px-5 md:py-4">
                       <span
-                        style={
+                        className={`px-2.5 py-1 rounded-md text-xs font-medium whitespace-nowrap inline-block ${
                           msg.isRead
-                            ? { background: 'rgba(148,163,184,0.12)', color: '#94a3b8', padding: '3px 10px', borderRadius: '6px', fontSize: '12px', fontWeight: 500 }
-                            : { background: 'rgba(59,130,246,0.15)', color: '#60a5fa', padding: '3px 10px', borderRadius: '6px', fontSize: '12px', fontWeight: 600 }
-                        }
+                            ? 'bg-slate-500/10 text-slate-400'
+                            : 'bg-blue-500/10 text-blue-400 font-semibold'
+                        }`}
                       >
                         {msg.isRead ? 'Read' : 'Unread'}
                       </span>
                     </td>
-                    <td style={{ padding: '14px 20px', textAlign: 'right' }}>
+                    <td className="p-3 md:px-5 md:py-4 text-right">
                       <MessageActions id={msg.id} isRead={msg.isRead} />
                     </td>
                   </tr>

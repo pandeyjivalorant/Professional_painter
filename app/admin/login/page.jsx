@@ -33,69 +33,28 @@ export default function LoginPage() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: '#0f172a',
-        padding: '16px',
-        fontFamily: 'Inter, system-ui, sans-serif',
-      }}
-    >
-      <div
-        style={{
-          width: '100%',
-          maxWidth: '400px',
-          background: '#1e293b',
-          border: '1px solid #334155',
-          borderRadius: '16px',
-          padding: '40px 32px',
-        }}
-      >
+    <div className="min-h-screen flex items-center justify-center bg-slate-900 p-4 font-sans">
+      <div className="w-full max-w-md bg-slate-800 border border-slate-700 rounded-2xl p-8 md:p-10 shadow-lg">
         {/* Icon */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '32px' }}>
-          <div
-            style={{
-              width: '52px',
-              height: '52px',
-              borderRadius: '50%',
-              background: 'rgba(59,130,246,0.15)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '16px',
-            }}
-          >
-            <Lock size={24} color="#60a5fa" />
+        <div className="flex flex-col items-center mb-8">
+          <div className="w-12 h-12 rounded-full bg-blue-500/15 flex items-center justify-center mb-4">
+            <Lock size={24} className="text-blue-400" />
           </div>
-          <h1 style={{ color: '#f1f5f9', fontSize: '22px', fontWeight: 700, margin: 0 }}>Admin Login</h1>
-          <p style={{ color: '#64748b', fontSize: '14px', marginTop: '6px' }}>Sign in to manage the portfolio</p>
+          <h1 className="text-slate-100 text-xl md:text-2xl font-bold m-0">Admin Login</h1>
+          <p className="text-slate-400 text-sm mt-1.5 text-center">Sign in to manage the portfolio</p>
         </div>
 
         {/* Error */}
         {error && (
-          <div
-            style={{
-              marginBottom: '20px',
-              padding: '12px 16px',
-              background: 'rgba(248,113,113,0.12)',
-              border: '1px solid rgba(248,113,113,0.3)',
-              borderRadius: '8px',
-              color: '#f87171',
-              fontSize: '14px',
-              textAlign: 'center',
-            }}
-          >
+          <div className="mb-5 p-3 md:p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm text-center">
             {error}
           </div>
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:gap-5">
           <div>
-            <label style={{ display: 'block', color: '#94a3b8', fontSize: '13px', fontWeight: 500, marginBottom: '6px' }}>
+            <label className="block text-slate-400 text-xs md:text-sm font-medium mb-1.5 md:mb-2">
               Email Address
             </label>
             <input
@@ -104,22 +63,12 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="admin@example.com"
-              style={{
-                width: '100%',
-                padding: '11px 14px',
-                background: '#0f172a',
-                border: '1px solid #334155',
-                borderRadius: '8px',
-                color: '#f1f5f9',
-                fontSize: '14px',
-                outline: 'none',
-                boxSizing: 'border-box',
-              }}
+              className="w-full px-3 py-2.5 md:px-4 md:py-3 bg-slate-900 border border-slate-700 rounded-lg text-slate-100 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
             />
           </div>
 
           <div>
-            <label style={{ display: 'block', color: '#94a3b8', fontSize: '13px', fontWeight: 500, marginBottom: '6px' }}>
+            <label className="block text-slate-400 text-xs md:text-sm font-medium mb-1.5 md:mb-2">
               Password
             </label>
             <input
@@ -128,37 +77,16 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              style={{
-                width: '100%',
-                padding: '11px 14px',
-                background: '#0f172a',
-                border: '1px solid #334155',
-                borderRadius: '8px',
-                color: '#f1f5f9',
-                fontSize: '14px',
-                outline: 'none',
-                boxSizing: 'border-box',
-              }}
+              className="w-full px-3 py-2.5 md:px-4 md:py-3 bg-slate-900 border border-slate-700 rounded-lg text-slate-100 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            style={{
-              width: '100%',
-              padding: '12px',
-              background: loading ? '#1d4ed8' : '#3b82f6',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '8px',
-              fontSize: '15px',
-              fontWeight: 600,
-              cursor: loading ? 'not-allowed' : 'pointer',
-              opacity: loading ? 0.75 : 1,
-              marginTop: '4px',
-              transition: 'background 0.15s',
-            }}
+            className={`w-full p-3 mt-2 rounded-lg text-white font-semibold text-sm md:text-base transition-colors ${
+              loading ? 'bg-blue-700 cursor-not-allowed opacity-75' : 'bg-blue-500 hover:bg-blue-600'
+            }`}
           >
             {loading ? 'Signing in…' : 'Sign In'}
           </button>

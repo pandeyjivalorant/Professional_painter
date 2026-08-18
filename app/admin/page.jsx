@@ -33,50 +33,35 @@ export default async function AdminDashboard() {
   const card = { background: '#1e293b', border: '1px solid #334155', borderRadius: '12px' };
 
   return (
-    <div style={{ padding: '32px', maxWidth: '1280px', margin: '0 auto' }}>
+    <div className="p-4 md:p-8 max-w-7xl mx-auto w-full">
       {/* Header */}
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '24px', fontWeight: 700, color: '#f1f5f9', margin: 0 }}>
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-xl md:text-2xl font-bold text-slate-100 m-0">
           Welcome back, {session?.user?.name || 'Admin'}
         </h1>
-        <p style={{ color: '#64748b', marginTop: '4px', fontSize: '14px' }}>
+        <p className="text-slate-400 mt-1 text-sm md:text-base">
           Here&apos;s what&apos;s happening with your portfolio today.
         </p>
       </div>
 
       {/* Stat Cards */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '20px',
-          marginBottom: '32px',
-        }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-6 md:mb-8">
         {statCards.map((stat) => {
           const Icon = stat.icon;
           return (
             <div
               key={stat.name}
-              style={{ ...card, padding: '24px', display: 'flex', alignItems: 'center', gap: '16px' }}
+              className="bg-slate-800 border border-slate-700 rounded-xl p-4 md:p-6 flex items-center gap-4"
             >
               <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: stat.iconBg,
-                  flexShrink: 0,
-                }}
+                className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ background: stat.iconBg }}
               >
                 <Icon size={22} color={stat.iconColor} />
               </div>
               <div>
-                <p style={{ color: '#64748b', fontSize: '13px', fontWeight: 500, margin: 0 }}>{stat.name}</p>
-                <p style={{ color: '#f1f5f9', fontSize: '26px', fontWeight: 700, margin: '2px 0 0 0' }}>
+                <p className="text-slate-400 text-xs md:text-sm font-medium m-0">{stat.name}</p>
+                <p className="text-slate-100 text-xl md:text-2xl font-bold mt-1 mb-0">
                   {stat.value}
                 </p>
               </div>
@@ -86,97 +71,53 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Recent Paintings */}
-      <div style={{ ...card, overflow: 'hidden' }}>
-        <div
-          style={{
-            padding: '20px 24px',
-            borderBottom: '1px solid #334155',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <h2 style={{ color: '#f1f5f9', fontSize: '16px', fontWeight: 600, margin: 0 }}>
+      <div className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+        <div className="p-4 md:px-6 md:py-5 border-b border-slate-700 flex items-center justify-between">
+          <h2 className="text-slate-100 text-sm md:text-base font-semibold m-0">
             Recent Paintings
           </h2>
           <Link
             href="/admin/paintings"
-            style={{ color: '#60a5fa', fontSize: '13px', fontWeight: 500, textDecoration: 'none' }}
+            className="text-blue-400 text-xs md:text-sm font-medium hover:text-blue-300 transition-colors no-underline"
           >
             View All →
           </Link>
         </div>
 
         {recentPaintings.length === 0 ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: '#64748b' }}>
+          <div className="p-8 md:p-10 text-center text-slate-400 text-sm md:text-base">
             No paintings yet. Add your first painting!
           </div>
         ) : (
           recentPaintings.map((painting, i) => (
             <div
               key={painting.id}
-              style={{
-                padding: '16px 24px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '16px',
-                borderBottom: i < recentPaintings.length - 1 ? '1px solid #1e293b' : 'none',
-              }}
+              className={`p-4 md:px-6 md:py-4 flex items-center gap-3 md:gap-4 ${
+                i < recentPaintings.length - 1 ? 'border-b border-slate-700' : ''
+              }`}
             >
-              <div
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '8px',
-                  background: '#0f172a',
-                  flexShrink: 0,
-                  overflow: 'hidden',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+              <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg bg-slate-900 flex-shrink-0 overflow-hidden flex items-center justify-center">
                 {painting.images[0]?.url ? (
                   <img
                     src={painting.images[0].url}
                     alt={painting.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    className="w-full h-full object-cover"
                   />
                 ) : (
-                  <ImageIcon size={20} color="#475569" />
+                  <ImageIcon size={20} className="text-slate-600" />
                 )}
               </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <p
-                  style={{
-                    color: '#e2e8f0',
-                    fontWeight: 500,
-                    margin: 0,
-                    fontSize: '14px',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
+              <div className="flex-1 min-w-0">
+                <p className="text-slate-200 font-medium m-0 text-sm md:text-base truncate">
                   {painting.title}
                 </p>
-                <p style={{ color: '#64748b', fontSize: '12px', margin: '2px 0 0 0' }}>
+                <p className="text-slate-400 text-xs md:text-sm mt-0.5 mb-0">
                   {painting.status} &bull; {painting.isPublished ? 'Published' : 'Draft'}
                 </p>
               </div>
               <Link
                 href={`/admin/paintings/${painting.id}/edit`}
-                style={{
-                  padding: '6px 14px',
-                  fontSize: '13px',
-                  fontWeight: 500,
-                  color: '#94a3b8',
-                  border: '1px solid #334155',
-                  borderRadius: '8px',
-                  textDecoration: 'none',
-                  background: 'transparent',
-                  whiteSpace: 'nowrap',
-                }}
+                className="px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-medium text-slate-400 border border-slate-700 rounded-lg hover:bg-slate-700 hover:text-slate-200 transition-colors no-underline whitespace-nowrap"
               >
                 Edit
               </Link>

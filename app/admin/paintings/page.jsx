@@ -25,27 +25,16 @@ export default async function PaintingsAdminPage() {
   });
 
   return (
-    <div style={{ padding: '32px', maxWidth: '1280px', margin: '0 auto' }}>
+    <div className="p-4 md:p-8 max-w-7xl mx-auto w-full">
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '16px', marginBottom: '32px', flexWrap: 'wrap' }}>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-8">
         <div>
-          <h1 style={{ fontSize: '24px', fontWeight: 700, color: '#f1f5f9', margin: 0 }}>Paintings</h1>
-          <p style={{ color: '#64748b', marginTop: '4px', fontSize: '14px' }}>Manage your portfolio of paintings.</p>
+          <h1 className="text-xl md:text-2xl font-bold text-slate-100 m-0">Paintings</h1>
+          <p className="text-slate-400 mt-1 text-sm md:text-base">Manage your portfolio of paintings.</p>
         </div>
         <Link
           href="/admin/paintings/new"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            background: '#3b82f6',
-            color: '#fff',
-            padding: '10px 18px',
-            borderRadius: '8px',
-            fontWeight: 600,
-            fontSize: '14px',
-            textDecoration: 'none',
-          }}
+          className="inline-flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors no-underline whitespace-nowrap"
         >
           <Plus size={16} />
           Add Painting
@@ -53,108 +42,69 @@ export default async function PaintingsAdminPage() {
       </div>
 
       {/* Table */}
-      <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '12px', overflow: 'hidden' }}>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+      <div className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-sm">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-sm text-left">
             <thead>
-              <tr style={{ background: '#0f172a', borderBottom: '1px solid #334155' }}>
+              <tr className="bg-slate-900 border-b border-slate-700">
                 {['Painting', 'Status', 'Price', 'Date Added', 'Actions'].map((h, i) => (
                   <th
                     key={h}
-                    style={{
-                      padding: '12px 20px',
-                      color: '#64748b',
-                      fontWeight: 600,
-                      fontSize: '11px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      textAlign: i === 4 ? 'right' : 'left',
-                    }}
+                    className={`p-3 md:px-5 md:py-4 text-slate-400 font-semibold text-xs uppercase tracking-wider ${
+                      i === 4 ? 'text-right' : 'text-left'
+                    }`}
                   >
                     {h}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-slate-700/50">
               {paintings.length === 0 ? (
                 <tr>
-                  <td colSpan={5} style={{ padding: '48px 20px', textAlign: 'center', color: '#64748b' }}>
+                  <td colSpan={5} className="p-8 md:p-12 text-center text-slate-400 text-sm md:text-base">
                     No paintings found. Click &ldquo;Add Painting&rdquo; to create one.
                   </td>
                 </tr>
               ) : (
-                paintings.map((painting, i) => (
-                  <tr
-                    key={painting.id}
-                    style={{
-                      borderBottom: i < paintings.length - 1 ? '1px solid #1e293b' : 'none',
-                    }}
-                  >
-                    <td style={{ padding: '14px 20px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                        <div
-                          style={{
-                            width: '44px',
-                            height: '44px',
-                            borderRadius: '8px',
-                            background: '#0f172a',
-                            flexShrink: 0,
-                            overflow: 'hidden',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                          }}
-                        >
+                paintings.map((painting) => (
+                  <tr key={painting.id} className="hover:bg-slate-700/20 transition-colors">
+                    <td className="p-3 md:px-5 md:py-4">
+                      <div className="flex items-center gap-3 md:gap-4">
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-slate-900 flex-shrink-0 overflow-hidden flex items-center justify-center">
                           {painting.images[0]?.url ? (
-                            <img src={painting.images[0].url} alt={painting.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <img src={painting.images[0].url} alt={painting.title} className="w-full h-full object-cover" />
                           ) : (
-                            <ImageIcon size={16} color="#475569" />
+                            <ImageIcon size={16} className="text-slate-500" />
                           )}
                         </div>
-                        <div>
-                          <p style={{ color: '#e2e8f0', fontWeight: 500, margin: 0, whiteSpace: 'nowrap' }}>{painting.title}</p>
-                          <p style={{ color: '#64748b', fontSize: '12px', margin: '2px 0 0 0' }}>
+                        <div className="min-w-0">
+                          <p className="text-slate-200 font-medium m-0 truncate">{painting.title}</p>
+                          <p className="text-slate-400 text-xs mt-0.5 mb-0 truncate">
                             {painting.category?.name || 'Uncategorized'} &bull; {painting.isPublished ? 'Published' : 'Draft'}
                           </p>
                         </div>
                       </div>
                     </td>
-                    <td style={{ padding: '14px 20px' }}>
+                    <td className="p-3 md:px-5 md:py-4">
                       <span
-                        style={{
-                          ...statusStyle(painting.status),
-                          padding: '3px 10px',
-                          borderRadius: '6px',
-                          fontSize: '12px',
-                          fontWeight: 600,
-                          whiteSpace: 'nowrap',
-                        }}
+                        className="px-2.5 py-1 rounded-md text-xs font-semibold whitespace-nowrap inline-block"
+                        style={statusStyle(painting.status)}
                       >
                         {painting.status}
                       </span>
                     </td>
-                    <td style={{ padding: '14px 20px', color: '#94a3b8', whiteSpace: 'nowrap' }}>
+                    <td className="p-3 md:px-5 md:py-4 text-slate-400 whitespace-nowrap">
                       {painting.price ? `${painting.price} ${painting.currency}` : '—'}
                     </td>
-                    <td style={{ padding: '14px 20px', color: '#94a3b8', whiteSpace: 'nowrap' }}>
+                    <td className="p-3 md:px-5 md:py-4 text-slate-400 whitespace-nowrap">
                       {new Date(painting.createdAt).toLocaleDateString()}
                     </td>
-                    <td style={{ padding: '14px 20px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px' }}>
+                    <td className="p-3 md:px-5 md:py-4">
+                      <div className="flex items-center justify-end gap-2">
                         <Link
                           href={`/admin/paintings/${painting.id}/edit`}
-                          style={{
-                            padding: '5px 14px',
-                            fontSize: '13px',
-                            fontWeight: 500,
-                            color: '#94a3b8',
-                            border: '1px solid #334155',
-                            borderRadius: '6px',
-                            textDecoration: 'none',
-                            background: 'transparent',
-                            whiteSpace: 'nowrap',
-                          }}
+                          className="px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-medium text-slate-400 border border-slate-700 rounded-lg hover:bg-slate-700 hover:text-slate-200 transition-colors no-underline whitespace-nowrap"
                         >
                           Edit
                         </Link>

@@ -10,9 +10,9 @@ export default async function AdminLayout({ children }) {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="flex min-h-screen" style={{ background: '#0f172a', fontFamily: 'Inter, system-ui, sans-serif' }}>
+    <div className="flex flex-col md:flex-row min-h-screen bg-slate-900 font-sans">
       {session && <AdminSidebar />}
-      <main className="flex-1 w-full overflow-x-hidden min-h-screen" style={{ background: '#0f172a' }}>
+      <main className="flex-1 w-full overflow-x-hidden min-h-screen bg-slate-900">
         {children}
       </main>
     </div>

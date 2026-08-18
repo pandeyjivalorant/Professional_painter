@@ -38,10 +38,10 @@ export default async function EditPaintingPage({ params }) {
   };
 
   return (
-    <div style={{ padding: '32px', maxWidth: '1280px', margin: '0 auto', fontFamily: 'Inter, system-ui, sans-serif' }}>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '24px', fontWeight: 700, color: '#f1f5f9', margin: 0 }}>Edit Painting</h1>
-        <p style={{ color: '#64748b', marginTop: '4px', fontSize: '14px' }}>
+    <div className="p-4 md:p-8 max-w-7xl mx-auto w-full font-sans">
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-xl md:text-2xl font-bold text-slate-100 m-0">Edit Painting</h1>
+        <p className="text-slate-400 mt-1 text-sm md:text-base">
           Updating details for &ldquo;{painting.title}&rdquo;
         </p>
       </div>
