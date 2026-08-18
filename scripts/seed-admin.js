@@ -4,8 +4,13 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = 'admin@example.com';
-  const password = 'AdminPassword123!';
+  const email = process.env.ADMIN_EMAIL;
+  const password = process.env.ADMIN_PASSWORD;
+
+  if (!email || !password) {
+    console.error('Please set ADMIN_EMAIL and ADMIN_PASSWORD in your .env file');
+    process.exit(1);
+  }
 
   // Check if admin already exists
   const existingAdmin = await prisma.aDMIN.findUnique({
