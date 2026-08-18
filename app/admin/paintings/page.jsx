@@ -1,6 +1,6 @@
 import prisma from '@/lib/prisma';
 import Link from 'next/link';
-import { Plus, Image as ImageIcon } from 'lucide-react';
+import { Plus, Image as ImageIcon, Pencil } from 'lucide-react';
 import DeletePaintingButton from './DeletePaintingButton';
 
 export const metadata = {
@@ -41,8 +41,59 @@ export default async function PaintingsAdminPage() {
         </Link>
       </div>
 
-      {/* Table */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-sm">
+      {/* ── Mobile card list (hidden on md+) ── */}
+      <div className="md:hidden flex flex-col gap-3">
+        {paintings.length === 0 ? (
+          <div className="bg-slate-800 border border-slate-700 rounded-xl p-8 text-center text-slate-400 text-sm">
+            No paintings found. Click &ldquo;Add Painting&rdquo; to create one.
+          </div>
+        ) : (
+          paintings.map((painting) => (
+            <div
+              key={painting.id}
+              className="bg-slate-800 border border-slate-700 rounded-xl p-4 flex items-center gap-3"
+            >
+              {/* Thumbnail */}
+              <div className="w-14 h-14 rounded-lg bg-slate-900 flex-shrink-0 overflow-hidden flex items-center justify-center">
+                {painting.images[0]?.url ? (
+                  <img src={painting.images[0].url} alt={painting.title} className="w-full h-full object-cover" />
+                ) : (
+                  <ImageIcon size={18} className="text-slate-500" />
+                )}
+              </div>
+
+              {/* Info */}
+              <div className="flex-1 min-w-0">
+                <p className="text-slate-200 font-medium text-sm truncate m-0">{painting.title}</p>
+                <p className="text-slate-400 text-xs mt-0.5 mb-1 truncate">
+                  {painting.category?.name || 'Uncategorized'} &bull; {painting.isPublished ? 'Published' : 'Draft'}
+                </p>
+                <span
+                  className="px-2 py-0.5 rounded text-xs font-semibold inline-block"
+                  style={statusStyle(painting.status)}
+                >
+                  {painting.status}
+                </span>
+              </div>
+
+              {/* Actions */}
+              <div className="flex items-center gap-1 flex-shrink-0">
+                <Link
+                  href={`/admin/paintings/${painting.id}/edit`}
+                  className="p-2 rounded-lg text-slate-400 border border-slate-700 hover:bg-slate-700 hover:text-slate-200 transition-colors no-underline inline-flex items-center justify-center"
+                  title="Edit"
+                >
+                  <Pencil size={15} />
+                </Link>
+                <DeletePaintingButton id={painting.id} title={painting.title} />
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* ── Desktop table (hidden on mobile) ── */}
+      <div className="hidden md:block bg-slate-800 border border-slate-700 rounded-xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm text-left">
             <thead>
@@ -50,7 +101,7 @@ export default async function PaintingsAdminPage() {
                 {['Painting', 'Status', 'Price', 'Date Added', 'Actions'].map((h, i) => (
                   <th
                     key={h}
-                    className={`p-3 md:px-5 md:py-4 text-slate-400 font-semibold text-xs uppercase tracking-wider ${
+                    className={`px-5 py-4 text-slate-400 font-semibold text-xs uppercase tracking-wider ${
                       i === 4 ? 'text-right' : 'text-left'
                     }`}
                   >
@@ -62,16 +113,16 @@ export default async function PaintingsAdminPage() {
             <tbody className="divide-y divide-slate-700/50">
               {paintings.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-8 md:p-12 text-center text-slate-400 text-sm md:text-base">
+                  <td colSpan={5} className="p-12 text-center text-slate-400 text-base">
                     No paintings found. Click &ldquo;Add Painting&rdquo; to create one.
                   </td>
                 </tr>
               ) : (
                 paintings.map((painting) => (
                   <tr key={painting.id} className="hover:bg-slate-700/20 transition-colors">
-                    <td className="p-3 md:px-5 md:py-4">
-                      <div className="flex items-center gap-3 md:gap-4">
-                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-slate-900 flex-shrink-0 overflow-hidden flex items-center justify-center">
+                    <td className="px-5 py-4">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-lg bg-slate-900 flex-shrink-0 overflow-hidden flex items-center justify-center">
                           {painting.images[0]?.url ? (
                             <img src={painting.images[0].url} alt={painting.title} className="w-full h-full object-cover" />
                           ) : (
@@ -86,7 +137,7 @@ export default async function PaintingsAdminPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="p-3 md:px-5 md:py-4">
+                    <td className="px-5 py-4">
                       <span
                         className="px-2.5 py-1 rounded-md text-xs font-semibold whitespace-nowrap inline-block"
                         style={statusStyle(painting.status)}
@@ -94,17 +145,17 @@ export default async function PaintingsAdminPage() {
                         {painting.status}
                       </span>
                     </td>
-                    <td className="p-3 md:px-5 md:py-4 text-slate-400 whitespace-nowrap">
+                    <td className="px-5 py-4 text-slate-400 whitespace-nowrap">
                       {painting.price ? `${painting.price} ${painting.currency}` : '—'}
                     </td>
-                    <td className="p-3 md:px-5 md:py-4 text-slate-400 whitespace-nowrap">
+                    <td className="px-5 py-4 text-slate-400 whitespace-nowrap">
                       {new Date(painting.createdAt).toLocaleDateString()}
                     </td>
-                    <td className="p-3 md:px-5 md:py-4">
+                    <td className="px-5 py-4">
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           href={`/admin/paintings/${painting.id}/edit`}
-                          className="px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-medium text-slate-400 border border-slate-700 rounded-lg hover:bg-slate-700 hover:text-slate-200 transition-colors no-underline whitespace-nowrap"
+                          className="px-4 py-2 text-sm font-medium text-slate-400 border border-slate-700 rounded-lg hover:bg-slate-700 hover:text-slate-200 transition-colors no-underline whitespace-nowrap"
                         >
                           Edit
                         </Link>

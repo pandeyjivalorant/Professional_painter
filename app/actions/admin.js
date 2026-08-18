@@ -121,11 +121,6 @@ export async function updatePainting(id, formData) {
 
     const { images, ...paintingData } = val;
 
-    // We do a transaction: update painting details, delete old images, create new ones.
-    // (A more optimized way would diff them, but since we have cascade/soft-delete, we can just hard delete or soft delete the images).
-    // Let's hard delete the old images from DB to keep it clean, but keep them on Cloudinary if not explicitly removed.
-    // The client should call a separate action to delete from Cloudinary.
-    
     await prisma.$transaction(async (tx) => {
       await tx.painting.update({
         where: { id },
@@ -195,6 +190,50 @@ export async function deleteCloudinaryImage(publicId) {
     return { success: true };
   } catch (error) {
     console.error('Delete cloudinary error:', error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function createCertificate(formData) {
+  try {
+    await checkAuth();
+
+    const data = JSON.parse(formData);
+
+    const certSchema = z.object({
+      title: z.string().min(1, 'Title is required'),
+      description: z.string().optional().nullable(),
+      imageUrl: z.string().min(1, 'Image is required'),
+      cloudinaryPublicId: z.string().optional().nullable(),
+      issuedBy: z.string().optional().nullable(),
+      issueDate: z.string().optional().nullable(),
+      displayOrder: z.coerce.number().default(0),
+    });
+
+    const parsed = certSchema.safeParse(data);
+    if (!parsed.success) {
+      return { success: false, error: parsed.error.errors[0].message };
+    }
+
+    const val = parsed.data;
+
+    await prisma.certificate.create({
+      data: {
+        title: val.title,
+        description: val.description || null,
+        imageUrl: val.imageUrl,
+        cloudinaryPublicId: val.cloudinaryPublicId || null,
+        issuedBy: val.issuedBy || null,
+        issueDate: val.issueDate ? new Date(val.issueDate) : null,
+        displayOrder: val.displayOrder,
+      },
+    });
+
+    revalidatePath('/certificates');
+    revalidatePath('/admin/certificates');
+    return { success: true };
+  } catch (error) {
+    console.error('Create certificate error:', error);
     return { success: false, error: error.message };
   }
 }

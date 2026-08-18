@@ -173,6 +173,14 @@ export default function PaintingForm({ initialData, categories = [] }) {
       onSubmit={handleSubmit}
       style={{ fontFamily: 'Inter, system-ui, sans-serif', maxWidth: '1100px' }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .painting-form-grid { grid-template-columns: 1fr !important; }
+          .painting-details-grid { grid-template-columns: 1fr !important; }
+          .painting-dims-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+      `}</style>
+
       {error && (
         <div
           style={{
@@ -190,6 +198,7 @@ export default function PaintingForm({ initialData, categories = [] }) {
       )}
 
       <div
+        className="painting-form-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr 320px',
@@ -258,7 +267,7 @@ export default function PaintingForm({ initialData, categories = [] }) {
           <div style={sectionStyle}>
             <h2 style={sectionTitle}>Artwork Details</h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+            <div className="painting-details-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
               {[
                 { label: 'Medium', name: 'medium', placeholder: 'e.g., Oil on Canvas' },
                 { label: 'Style', name: 'style', placeholder: 'e.g., Impressionism' },
@@ -272,7 +281,7 @@ export default function PaintingForm({ initialData, categories = [] }) {
               ))}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+            <div className="painting-dims-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginBottom: '16px' }}>
               <div>
                 <label style={labelStyle}>Width</label>
                 <input type="number" step="0.1" name="width" value={formData.width} onChange={handleChange} style={inputStyle} />
