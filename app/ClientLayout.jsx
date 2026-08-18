@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-
 function PageWrapper({ children }) {
   const location = usePathname();
   return (
@@ -23,7 +22,7 @@ function PageWrapper({ children }) {
   );
 }
 
-function AppInner({ children }) {
+function PublicLayout({ children }) {
   return (
     <div className="min-h-screen bg-obsidian flex flex-col">
       <Navbar />
@@ -36,5 +35,12 @@ function AppInner({ children }) {
 }
 
 export default function ClientLayout({ children }) {
-  return <AppInner>{children}</AppInner>;
+  const pathname = usePathname();
+
+  // Admin routes render without the public Navbar/Footer
+  if (pathname.startsWith('/admin')) {
+    return <>{children}</>;
+  }
+
+  return <PublicLayout>{children}</PublicLayout>;
 }

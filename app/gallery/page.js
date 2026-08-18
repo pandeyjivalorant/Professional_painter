@@ -12,7 +12,7 @@ export const metadata = {
 
 export default async function GalleryPage() {
   const paintingsData = await prisma.painting.findMany({
-    where: { isPublished: true },
+    where: { isPublished: true, deletedAt: null },
     include: {
       images: { orderBy: { displayOrder: 'asc' } },
       category: true

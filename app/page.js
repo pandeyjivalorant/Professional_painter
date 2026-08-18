@@ -13,7 +13,7 @@ export const metadata = {
 export default async function HomePage() {
   // Fetch featured paintings from the database
   const featuredPaintingsData = await prisma.painting.findMany({
-    where: { isFeatured: true },
+    where: { isFeatured: true, deletedAt: null },
     include: { images: { orderBy: { displayOrder: 'asc' } } },
     take: 3,
   });

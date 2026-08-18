@@ -75,6 +75,7 @@ model PaintingImage {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   blurDataUrl  String?
+  cloudinaryPublicId String?
   painting     Painting  @relation(fields: [paintingId], references: [id], onDelete: Cascade)
 
   @@index([paintingId, deletedAt])
@@ -92,6 +93,7 @@ model Certificate {
   deletedAt    DateTime?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+  cloudinaryPublicId String?
 
   @@index([deletedAt])
   @@index([displayOrder])

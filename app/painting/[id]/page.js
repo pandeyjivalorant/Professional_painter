@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
     include: { images: true }
   });
   
-  if (!painting) {
+  if (!painting || painting.deletedAt) {
     return {
       title: 'Artwork Not Found',
     };
@@ -71,7 +71,7 @@ export default async function PaintingPage({ params }) {
     }
   });
 
-  if (!paintingData) {
+  if (!paintingData || paintingData.deletedAt) {
     notFound();
   }
 
@@ -97,6 +97,7 @@ export default async function PaintingPage({ params }) {
     where: {
       id: { not: painting.id },
       categoryId: painting.categoryId,
+      deletedAt: null
     },
     include: { images: true },
     take: 4,
